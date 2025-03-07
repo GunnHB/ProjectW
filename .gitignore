@@ -5,6 +5,8 @@
 Content/*
 !Content/_Assets/
 !Content/_Maps/
+!Content/_GameModes/
+!Content/_PlayerCharacter/
 
 # Visual Studio 2015 user specific files
 .vs/
