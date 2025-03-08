@@ -1,7 +1,7 @@
 
-#include "WarriorGameplayTags.h"
+#include "ProjectWGameplayTags.h"
 
-namespace WarriorGameplayTags
+namespace ProjectWGameplayTags
 {
 	/* Input Tags */
 	UE_DEFINE_GAMEPLAY_TAG(InputTag_Move, "InputTag.Move")
