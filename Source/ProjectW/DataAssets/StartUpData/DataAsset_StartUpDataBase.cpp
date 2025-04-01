@@ -6,12 +6,12 @@
 #include "ProjectW/AbilitySystem/WarriorAbilitySystemComponent.h"
 #include "ProjectW/AbilitySystem/Abilities/WarriorGameplayAbility.h"
 
-void UDataAsset_StartUpDataBase::GiveToAbilitySystemComponent(UWarriorAbilitySystemComponent* InWarriorASCToGive, int32 ApplyLevel)
+void UDataAsset_StartUpDataBase::GiveToAbilitySystemComponent(UWarriorAbilitySystemComponent* InASCToGive, int32 ApplyLevel)
 {
-	check(InWarriorASCToGive);
+	check(InASCToGive);
 
-	GrantAbilities(ActivateOnGiveAbilities, InWarriorASCToGive, ApplyLevel);
-	GrantAbilities(ReactiveAbilities, InWarriorASCToGive, ApplyLevel);
+	GrantAbilities(ActivateOnGiveAbilities, InASCToGive, ApplyLevel);
+	GrantAbilities(ReactiveAbilities, InASCToGive, ApplyLevel);
 }
 
 void UDataAsset_StartUpDataBase::GrantAbilities(const TArray<TSubclassOf<UWarriorGameplayAbility>>& InAbilitiesToGive, UWarriorAbilitySystemComponent* InWarriorASCToGive, int32 ApplyLevel)
@@ -21,7 +21,7 @@ void UDataAsset_StartUpDataBase::GrantAbilities(const TArray<TSubclassOf<UWarrio
 
 	for (const TSubclassOf<UWarriorGameplayAbility>& Ability : InAbilitiesToGive)
 	{
-		if (IsValid(Ability))
+		if (IsValid(Ability) == false)
 			continue;
 
 		FGameplayAbilitySpec AbilitySpec(Ability);

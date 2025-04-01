@@ -15,6 +15,7 @@
 #include "../DebugHelper.h"
 #include "../ProjectWGameplayTags.h"
 #include "ProjectW/AbilitySystem/WarriorAbilitySystemComponent.h"
+#include "ProjectW/DataAssets/StartUpData/DataAsset_StartUpDataBase.h"
 
 AWarriorHeroCharacter::AWarriorHeroCharacter()
 {
@@ -44,11 +45,11 @@ void AWarriorHeroCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
 
-	if (WarriorAbilitySystemComponent && WarriorAttributeSet)
+	if (CharacterStartUpData.IsNull() == false)
 	{
-		const FString ASCText = FString::Printf(TEXT("Owner Actor: %s, AvatarActor: %s"), *WarriorAbilitySystemComponent->GetOwnerActor()->GetActorLabel(), *WarriorAbilitySystemComponent->GetAvatarActor()->GetActorLabel());
-		Debug::Print(TEXT("Ability system component valid. ") + ASCText);
-		Debug::Print(TEXT("AttributeSet valid"));
+		UDataAsset_StartUpDataBase* LoadedData = CharacterStartUpData.LoadSynchronous();
+		if (IsValid(LoadedData))
+			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
 	}
 }
 
