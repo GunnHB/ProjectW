@@ -33,6 +33,8 @@ void AWarriorBaseCharacter::PossessedBy(AController* NewController)
 		// ASC를 사용하기 위해서 반드시 호출해야하는 함수
 		// 해당 프로젝트에서는 오너와 아바타를 같은 액터로 세팅했지만 경우에 따라 다름
 		WarriorAbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+		ensureMsgf(CharacterStartUpData.IsNull() == false, TEXT("forgot to assign start up data to %s"), *GetName());
 	}
 }
 
