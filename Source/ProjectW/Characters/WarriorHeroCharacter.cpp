@@ -14,9 +14,13 @@
 
 #include "ProjectW/DataAssets/Input/DataAsset_InputConfig.h"
 #include "ProjectW/Components/Input/WarriorInputComponent.h"
+#include "ProjectW/AbilitySystem/WarriorAbilitySystemComponent.h"
+#include "ProjectW/AbilitySystem/WarriorAttributeSet.h"
 #include "ProjectW/WarriorGameplayTags.h"
 
 #include "../DebugHelper.h"
+#include "ProjectW/DataAssets/StartUpData/DataAsset_StartUpDataBase.h"
+
 
 AWarriorHeroCharacter::AWarriorHeroCharacter()
 {
@@ -45,8 +49,6 @@ AWarriorHeroCharacter::AWarriorHeroCharacter()
 void AWarriorHeroCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-
-	Debug::Print(TEXT("Working"));
 }
 
 void AWarriorHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -65,6 +67,20 @@ void AWarriorHeroCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 	
 	WarriorInputComponent->BindNativeInputAction(InputConfigDataAsset, WarriorGameplayTags::InputTag_Move, ETriggerEvent::Triggered, this, &AWarriorHeroCharacter::Input_Move);
 	WarriorInputComponent->BindNativeInputAction(InputConfigDataAsset, WarriorGameplayTags::InputTag_Look, ETriggerEvent::Triggered, this, &AWarriorHeroCharacter::Input_Look);
+}
+
+void AWarriorHeroCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	// 동기식 로드
+	if (CharacterStartUpData.IsNull() == false)
+	{
+		if (UDataAsset_StartUpDataBase* LoadedData = CharacterStartUpData.LoadSynchronous())
+		{
+			LoadedData->GiveToAbilitySystemComponent(WarriorAbilitySystemComponent);
+		}
+	}
 }
 
 void AWarriorHeroCharacter::Input_Move(const FInputActionValue& InputActionValue)
