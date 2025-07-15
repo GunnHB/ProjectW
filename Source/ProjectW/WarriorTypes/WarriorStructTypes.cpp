@@ -3,7 +3,7 @@
 
 #include "WarriorStructTypes.h"
 
-#include "ProjectW/AbilitySystem/Abilities/WarriorGameplayAbility.h"
+#include "ProjectW/AbilitySystem/Abilities/WarriorHeroGameplayAbility.h"
 
 bool FWarriorHeroAbilitySet::IsValid() const
 {
