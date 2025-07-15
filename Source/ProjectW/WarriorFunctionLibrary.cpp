@@ -17,7 +17,7 @@ void UWarriorFunctionLibrary::AddGameplayTagToActorIfNone(AActor* InActor, FGame
 {
 	UWarriorAbilitySystemComponent* ACS = NativeGetWarriorASCFromActor(InActor);
 
-	if (ACS->HasMatchingGameplayTag(TagToAdd))
+	if (ACS->HasMatchingGameplayTag(TagToAdd) == false)
 		ACS->AddLooseGameplayTag(TagToAdd);
 }
 
