@@ -29,14 +29,14 @@ void UWarriorFunctionLibrary::RemoveGameplayTagFromActorIfFound(AActor* InActor,
 		ACS->RemoveLooseGameplayTag(TagToRemove);
 }
 
-bool UWarriorFunctionLibrary::NativeDoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck)
+bool UWarriorFunctionLibrary::NativeDoesActorHaveTag(AActor* InActor, FGameplayTag TagToCheck)
 {
 	UWarriorAbilitySystemComponent* ACS = NativeGetWarriorASCFromActor(InActor);
 
 	return ACS->HasMatchingGameplayTag(TagToCheck);
 }
 
-void UWarriorFunctionLibrary::BP_DoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, EWarriorConfirmType& OutConfirmType)
+void UWarriorFunctionLibrary::BP_DoesActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, EWarriorConfirmType& OutConfirmType)
 {
-	OutConfirmType = NativeDoseActorHaveTag(InActor, TagToCheck) ? EWarriorConfirmType::Yes : EWarriorConfirmType::No; 
+	OutConfirmType = NativeDoesActorHaveTag(InActor, TagToCheck) ? EWarriorConfirmType::Yes : EWarriorConfirmType::No; 
 }

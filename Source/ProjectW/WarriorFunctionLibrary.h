@@ -32,8 +32,8 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Warrior|FunctionLibrary")
 	static void RemoveGameplayTagFromActorIfFound(AActor* InActor, FGameplayTag TagToRemove);
 
-	static bool NativeDoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck);
+	static bool NativeDoesActorHaveTag(AActor* InActor, FGameplayTag TagToCheck);
 
-	UFUNCTION(BlueprintCallable, Category="Warrior|FunctionLibrary", meta=(DisplayName="Dose Actor Have Tag", ExpandEnumAsExecs="OutConfirmType"))
-	static void BP_DoseActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, EWarriorConfirmType& OutConfirmType);
+	UFUNCTION(BlueprintCallable, Category="Warrior|FunctionLibrary", meta=(DisplayName="Does Actor Have Tag", ExpandEnumAsExecs="OutConfirmType"))
+	static void BP_DoesActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, EWarriorConfirmType& OutConfirmType);
 };
