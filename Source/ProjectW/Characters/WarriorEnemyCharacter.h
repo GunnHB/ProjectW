@@ -1,0 +1,27 @@
+// Fill out your copyright notice in the Description page of Project Settings.
+
+#pragma once
+
+#include "CoreMinimal.h"
+#include "WarriorBaseCharacter.h"
+#include "WarriorEnemyCharacter.generated.h"
+
+class UEnemyCombatComponent;
+/**
+ * 
+ */
+UCLASS()
+class PROJECTW_API AWarriorEnemyCharacter : public AWarriorBaseCharacter
+{
+	GENERATED_BODY()
+
+public:
+	AWarriorEnemyCharacter();
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="Combat")
+	TObjectPtr<UEnemyCombatComponent> EnemyCombatComponent = nullptr;
+
+public:
+	FORCEINLINE UEnemyCombatComponent* GetEnemyCombatComponent() const {return EnemyCombatComponent;}
+};
