@@ -25,6 +25,10 @@ class PROJECTW_API AWarriorHeroCharacter : public AWarriorBaseCharacter
 public:
 	AWarriorHeroCharacter();
 
+	//~ Begin IPawnCombatInterface Interface.
+	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
+	//~ End IPawnCombatInterface Interface
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
