@@ -25,5 +25,5 @@ protected:
 	TObjectPtr<UBoxComponent> WeaponCollisionBox = nullptr;
 
 public:
-	FORCEINLINE UBoxComponent* GetWeaponCollBox() const {return WeaponCollisionBox;}
+	FORCEINLINE UBoxComponent* GetWeaponCollisionBox() const {return WeaponCollisionBox;}
 };
