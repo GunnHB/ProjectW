@@ -27,6 +27,9 @@ namespace WarriorGameplayTags
 	
 	PROJECTW_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Status_JumpToFinisher);
 
+	PROJECTW_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Light);
+	PROJECTW_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Heavy);
+
 	/** Enemy Tags **/
 	PROJECTW_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);
 	
