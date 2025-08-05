@@ -13,5 +13,7 @@ UCLASS()
 class PROJECTW_API UGEExecCalc_DamageTake : public UGameplayEffectExecutionCalculation
 {
 	GENERATED_BODY()
-	
+
+public:
+	UGEExecCalc_DamageTake();
 };
