@@ -65,7 +65,6 @@ void UGEExecCalc_DamageTake::Execute_Implementation(const FGameplayEffectCustomE
 
 	float SourceAttackPower = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(GetWarriorDamageCapture().AttackPowerDef, EvaluateParameters, SourceAttackPower);
-	Debug::Print("SourceAttackPower", SourceAttackPower);
 
 	float BaseDamage = 0.f;
 	int32 UsedLightAttackComboCount = 0;
@@ -76,32 +75,27 @@ void UGEExecCalc_DamageTake::Execute_Implementation(const FGameplayEffectCustomE
 		if (TagMagnitude.Key.MatchesTagExact(WarriorGameplayTags::Shared_SetByCaller_BaseDamage))
 		{
 			BaseDamage = TagMagnitude.Value;
-			Debug::Print("BaseDamage", BaseDamage);
 		}
 
 		if (TagMagnitude.Key.MatchesTagExact(WarriorGameplayTags::Player_SetByCaller_AttackType_Light))
 		{
 			UsedLightAttackComboCount = TagMagnitude.Value;
-			Debug::Print("UsedLightAttackComboCount", UsedLightAttackComboCount);
 		}
 
 		if (TagMagnitude.Key.MatchesTagExact(WarriorGameplayTags::Player_SetByCaller_AttackType_Heavy))
 		{
 			UsedHeavyAttackComboCount = TagMagnitude.Value;
-			Debug::Print("UsedHeavyAttackComboCount", UsedHeavyAttackComboCount);
 		}
 	}
 
 	float TargetDefensePower = 0.f;
 	ExecutionParams.AttemptCalculateCapturedAttributeMagnitude(GetWarriorDamageCapture().DefensePowerDef, EvaluateParameters, TargetDefensePower);
-	Debug::Print("TargetDefensePower", TargetDefensePower);
 
 	if (UsedLightAttackComboCount != 0)
 	{
 		const float DamageIncreasePercentLight = (UsedLightAttackComboCount - 1) * .05f + 1.f;
 
 		BaseDamage *= DamageIncreasePercentLight;
-		Debug::Print("ScaledBaseDamageLight", BaseDamage);
 	}
 
 	if (UsedHeavyAttackComboCount != 0)
@@ -109,7 +103,6 @@ void UGEExecCalc_DamageTake::Execute_Implementation(const FGameplayEffectCustomE
 		const float DamageIncreasePercentHeavy = UsedHeavyAttackComboCount * .15f + 1.f;
 
 		BaseDamage *= DamageIncreasePercentHeavy;
-		Debug::Print("ScaledBaseDamageHeavy", BaseDamage);
 	}
 
 	const float FinalDamageDone = BaseDamage * SourceAttackPower / TargetDefensePower;
