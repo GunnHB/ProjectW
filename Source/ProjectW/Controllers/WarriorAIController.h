@@ -18,6 +18,10 @@ class PROJECTW_API AWarriorAIController : public AAIController
 
 public:
 	AWarriorAIController(const FObjectInitializer& ObjectInitializer);
+	
+	//~ Begin IGenericTeamAgentInterface Interface.
+	virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
+	//~ End IGenericTeamAgentInterface Interface
 
 protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
