@@ -32,5 +32,8 @@ protected:
 	float GroundSpeed = 0.f;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AnimData|LocomotionData")
-	uint8 bHasAcceleration:1 = false;
+	bool bHasAcceleration = false;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category="AnimData|LocomotionData")
+	float LocomotionDirection = 0.f;
 };
