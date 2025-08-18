@@ -18,6 +18,7 @@ public class ProjectW : ModuleRules
 			"GameplayTags",
 			"GameplayTasks",
 			"AnimGraphRuntime",
+			"MotionWarping"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[] { });
