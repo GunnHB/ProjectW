@@ -21,7 +21,7 @@ void UEnemyCombatComponent::OnHitTargetActor(AActor* HitActor)
 	const bool bIsPlayerBlocking = UWarriorFunctionLibrary::NativeDoesActorHaveTag(HitActor, WarriorGameplayTags::Player_Status_Blocking);
 	const bool bIsMyAttackUnblockable = false;
 
-	if (bIsPlayerBlocking && !bIsMyAttackUnblockable)
+	if (bIsPlayerBlocking && bIsMyAttackUnblockable == false)
 		bIsValidBlock = UWarriorFunctionLibrary::IsValidBlock(GetOwningPawn(), HitActor);
 
 	FGameplayEventData EventData;
@@ -29,11 +29,7 @@ void UEnemyCombatComponent::OnHitTargetActor(AActor* HitActor)
 	EventData.Target = HitActor;
 
 	if (bIsValidBlock)
-	{
-		// todo: handle successful block
-	}
+		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(HitActor, WarriorGameplayTags::Player_Event_SuccessfulBlock, EventData);
 	else
-	{
 		UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetOwningPawn(), WarriorGameplayTags::Shared_Event_MeleeHit, EventData);
-	}
 }
