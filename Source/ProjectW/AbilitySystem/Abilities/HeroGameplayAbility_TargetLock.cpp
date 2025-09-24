@@ -10,6 +10,8 @@
 #include "Kismet/KismetSystemLibrary.h"
 
 #include "ProjectW/DebugHelper.h"
+#include "ProjectW/WarriorFunctionLibrary.h"
+#include "ProjectW/WarriorGameplayTags.h"
 #include "ProjectW/Characters/WarriorHeroCharacter.h"
 #include "ProjectW/Controllers/WarriorHeroController.h"
 #include "ProjectW/Widgets/WarriorWidgetBase.h"
@@ -26,6 +28,20 @@ void UHeroGameplayAbility_TargetLock::EndAbility(const FGameplayAbilitySpecHandl
 	CleanUp();
 	
 	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+}
+
+void UHeroGameplayAbility_TargetLock::OnTargetLockTick(float DeltaTime)
+{
+	if (IsValid(CurrentLockedActor) == false
+		|| UWarriorFunctionLibrary::NativeDoesActorHaveTag(CurrentLockedActor, WarriorGameplayTags::Shared_Status_Dead)
+		|| UWarriorFunctionLibrary::NativeDoesActorHaveTag(GetHeroCharacterFromActorInfo(), WarriorGameplayTags::Shared_Status_Dead))
+	{
+		CancelTargetLockAbility();
+		
+		return;
+	}
+
+	SetTargetLockWidgetPosition();
 }
 
 void UHeroGameplayAbility_TargetLock::TryLockOnTarget()
@@ -146,4 +162,7 @@ void UHeroGameplayAbility_TargetLock::CleanUp()
 
 	if (IsValid(DrawnTargetLockWidget))
 		DrawnTargetLockWidget->RemoveFromParent();
+
+	DrawnTargetLockWidget = nullptr;
+	TargetLockWidgetSize = FVector2D::ZeroVector;
 }
