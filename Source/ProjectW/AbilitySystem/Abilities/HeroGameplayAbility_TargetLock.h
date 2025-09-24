@@ -49,6 +49,9 @@ private:
 	
 	UPROPERTY(EditDefaultsOnly, Category="TargetLock")
 	TSubclassOf<UWarriorWidgetBase> TargetLockWidgetClass = nullptr;
+	
+	UPROPERTY(EditDefaultsOnly, Category="TargetLock")
+	float TargetLockRotationInterpSpeed = 5.f;
 
 	UPROPERTY()
 	TArray<AActor*> AvailableActorsToLock;
